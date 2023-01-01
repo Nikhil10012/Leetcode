@@ -1,0 +1,39 @@
+class Solution {
+    public void sortColors(int[] nums) {
+        int n = nums.length;
+        int c=0;
+        int b=0;
+        int d=0;
+        int k[] =new int[10];
+        for(int i=0;i<n;i++)
+        {
+            if(nums[i]==0)
+            {
+                 b = b+1;
+            }
+            else if(nums[i]==1)
+            {
+                c = c+1;
+            }
+            else
+            {
+                d = d+1;
+            }
+        }
+        for(int i=0;i<n;i++)
+        {
+            if(i < b)
+            {
+                 nums[i] = 0;
+            }
+            if(i >= b && i < (c+b))
+            {
+                nums[i] = 1;
+            }
+            if(i >= (c+b) && i < (b+c+d))
+            {
+                nums[i] = 2;
+            }
+        }
+    }
+}
