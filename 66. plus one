@@ -1,0 +1,21 @@
+class Solution {
+    public int[] plusOne(int[] digits) {
+        int n = digits.length-1 ;
+
+        while ( n>=0 && digits[n] == 9) {
+            n--;
+        }
+        if (n == -1) {
+            int[] res = new int[digits.length + 1];
+            res[0] = 1;
+            return res;
+        }
+        int[] res = new int[digits.length];
+        
+        res[n] = digits[n] + 1;
+        for (int j = 0; j < n; j ++) {
+            res[j] = digits[j];
+        }
+        return res;
+    }
+}
