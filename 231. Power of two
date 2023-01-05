@@ -1,0 +1,29 @@
+class Solution {
+    public boolean isPowerOfTwo(int n) {
+        int k=1;
+        int flag=0;
+        if(n==1)
+        {
+            return true;
+        }
+        else
+        {
+            for(int i=0;i<31;i++)
+            {
+                k=k*2;
+                if(n==k && n!=-2147483648)
+                {
+                    flag = 1;
+                }
+            }
+        }
+        if(flag==1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
