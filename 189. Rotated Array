@@ -1,0 +1,24 @@
+class Solution {
+    public void rotate(int[] nums, int k) {
+        int l = nums.length;
+        if (l <= 1 || k <= 0) {
+            return; // No need to rotate
+        }
+        k %= l; // Adjust k to handle cases where k > l
+        
+        int[] newarr = new int[l];
+        int j;
+        
+        for (j = 0; j < k; j++) {
+            newarr[j] = nums[l - k + j];
+        }
+        
+        for (int i = 0; i < l - k; i++) {
+            newarr[i + k] = nums[i];
+        }
+        
+        for (j = 0; j < l; j++) {
+            nums[j] = newarr[j];
+        }
+    }
+}
