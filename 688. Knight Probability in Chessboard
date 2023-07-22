@@ -1,0 +1,38 @@
+public class Solution {
+    int[] xMove = {-2, -2, -1, -1, 1, 1, 2, 2};
+    int[] yMove = {-1, 1, -2, 2, -2, 2, -1, 1};
+
+    public double knightProbability(int n, int k, int row, int col) {
+        double[][][] dp = new double[n][n][k + 1];
+        
+        // Initialize the base case: k = 0 (starting point)
+        dp[row][col][0] = 1.0;
+
+        // Iterate for each step from 1 to k
+        for (int step = 1; step <= k; step++) {
+            // Iterate for each cell
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    // Calculate the probability of reaching cell (i, j) in step 'step'
+                    for (int m = 0; m < 8; m++) {
+                        int prevRow = i + xMove[m];
+                        int prevCol = j + yMove[m];
+                        if (prevRow >= 0 && prevRow < n && prevCol >= 0 && prevCol < n) {
+                            dp[i][j][step] += dp[prevRow][prevCol][step - 1] / 8.0;
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Sum up the probabilities of all cells after 'k' steps
+        double totalProbability = 0.0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                totalProbability += dp[i][j][k];
+            }
+        }
+        
+        return totalProbability;
+    }
+}
