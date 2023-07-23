@@ -1,0 +1,61 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<TreeNode> allPossibleFBT(int n) {
+        Map<Integer, List<TreeNode>> memo = new HashMap<>();
+        return generateFBT(n, memo);
+    }
+
+    private List<TreeNode> generateFBT(int n, Map<Integer, List<TreeNode>> memo) {
+        List<TreeNode> result = new ArrayList<>();
+
+        // Base case: If n is even or less than 1, return an empty list as it's not possible to create a full binary tree.
+        if (n % 2 == 0 || n < 1) {
+            return result;
+        }
+
+        // Base case: If n is 1, there's only one possible full binary tree with a single node.
+        if (n == 1) {
+            result.add(new TreeNode(0));
+            return result;
+        }
+
+        // Check if the result for the current n is already computed and stored in the memoization cache.
+        if (memo.containsKey(n)) {
+            return memo.get(n);
+        }
+
+        // Recursive step: Try all possible combinations for left and right subtrees.
+        for (int i = 1; i < n; i += 2) {
+            List<TreeNode> leftSubtrees = generateFBT(i, memo);
+            List<TreeNode> rightSubtrees = generateFBT(n - 1 - i, memo);
+
+            // Combine all possible left and right subtrees to form full binary trees.
+            for (TreeNode leftSubtree : leftSubtrees) {
+                for (TreeNode rightSubtree : rightSubtrees) {
+                    TreeNode root = new TreeNode(0);
+                    root.left = leftSubtree;
+                    root.right = rightSubtree;
+                    result.add(root);
+                }
+            }
+        }
+
+        // Store the result in the memoization cache before returning.
+        memo.put(n, result);
+        return result;
+    }
+}
