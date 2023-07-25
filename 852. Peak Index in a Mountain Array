@@ -1,0 +1,21 @@
+class Solution {
+    public int peakIndexInMountainArray(int[] arr) {
+       int left = 0;
+        int right = arr.length - 1;
+
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+
+            if (arr[mid] < arr[mid + 1]) {
+                // Move to the right half since we are ascending
+                left = mid + 1;
+            } else {
+                // Move to the left half since we are descending
+                right = mid;
+            }
+        }
+
+        // At the end of the loop, left and right will converge to the peak element
+        return left; 
+    }
+}
