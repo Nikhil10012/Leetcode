@@ -1,0 +1,48 @@
+import java.util.function.Function;
+
+class Solution {
+    public int minSpeedOnTime(int[] dist, double hour) {
+        int n = dist.length;
+
+        // Helper function to calculate the time needed to complete the journey at a given speed
+        // and to handle waiting time between train rides
+        // Returns the total time taken or -1 if it exceeds the given hour
+        Function<Integer, Double> calculateTime = speed -> {
+            double totalTime = 0.0;
+            for (int i = 0; i < n - 1; i++) {
+                double timeForRide = (double) dist[i] / speed;
+                totalTime += Math.ceil(timeForRide);
+            }
+            totalTime += (double) dist[n - 1] / speed;
+            return totalTime;
+        };
+
+        int left = 1;
+        int right = 10000000; // 10^7 as the upper bound (as mentioned in the problem)
+
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            double totalTime = calculateTime.apply(mid);
+            if (totalTime <= hour) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+
+        // Check if the minimum speed allows reaching the office on time
+        if (left == 10000000 && calculateTime.apply(left) > hour) {
+            return -1;
+        }
+
+        return left;
+    }
+public static void main(String[] args) {
+    Solution solution = new Solution();
+    int[] dist = {1, 3, 2};
+    double hour = 6.0;
+    int output = solution.minSpeedOnTime(dist, hour);
+    System.out.println("Output: " + output);
+}
+
+}
