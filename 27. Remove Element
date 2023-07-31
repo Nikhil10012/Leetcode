@@ -1,0 +1,20 @@
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int i = 0; // The pointer for traversing the array
+        int j = 0; // The pointer to keep track of the position to place valid elements
+
+        // Loop through the array
+        while (i < nums.length) {
+            // If the current element is not equal to 'val'
+            // place it at 'j' position and move both pointers
+            if (nums[i] != val) {
+                nums[j] = nums[i];
+                j++;
+            }
+            // Move the traversing pointer to the next element
+            i++;
+        }
+        // 'j' will now represent the new length of the array
+        return j;
+    }
+}
