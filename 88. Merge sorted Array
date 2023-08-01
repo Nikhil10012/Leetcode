@@ -1,0 +1,25 @@
+class Solution {
+    public void merge(int[] a, int m, int[] b, int n) {
+        int i = m - 1; // Index of last element in array a
+        int j = n - 1; // Index of last element in array b
+        int k = m + n - 1; // Index of last position in merged array
+        
+        while (i >= 0 && j >= 0) {
+            if (a[i] > b[j]) {
+                a[k] = a[i];
+                i--;
+            } else {
+                a[k] = b[j];
+                j--;
+            }
+            k--;
+        }
+        
+        // If there are any remaining elements in array b
+        while (j >= 0) {
+            a[k] = b[j];
+            j--;
+            k--;
+        }
+    }
+}
