@@ -1,0 +1,36 @@
+public class ValidPalindrome {
+    public static boolean isPalindrome(String input) {
+        if (input == null) {
+            return false;
+        }
+        
+        int left = 0;
+        int right = input.length() - 1;
+
+        while (left < right) {
+            char leftChar = Character.toLowerCase(input.charAt(left));
+            char rightChar = Character.toLowerCase(input.charAt(right));
+            
+            if (!Character.isLetterOrDigit(leftChar)) {
+                left++;
+            } else if (!Character.isLetterOrDigit(rightChar)) {
+                right--;
+            } else if (leftChar != rightChar) {
+                return false;
+            } else {
+                left++;
+                right--;
+            }
+        }
+        
+        return true;
+    }
+
+    public static void main(String[] args) {
+        String testString1 = "A man, a plan, a canal, Panama!";
+        System.out.println(isPalindrome(testString1)); // Output: true
+
+        String testString2 = "race a car";
+        System.out.println(isPalindrome(testString2)); // Output: false
+    }
+}
