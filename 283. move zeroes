@@ -1,0 +1,24 @@
+int n = arr.length;
+        int[] mz = new int[n];
+        int nonZeroIndex = 0;
+
+        // Copy non-zero elements to the beginning of the array (mz) and count zeros
+        int zeroCount = 0;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] != 0) {
+                mz[nonZeroIndex++] = arr[i];
+            } else {
+                zeroCount++;
+            }
+        }
+
+        // Fill the rest of the array with zeros
+        for (int i = n - 1; zeroCount > 0; i--) {
+            mz[i] = 0;
+            zeroCount--;
+        }
+
+        // Copy the elements back to the original array (arr)
+        for (int i = 0; i < n; i++) {
+            arr[i] = mz[i];
+        }
