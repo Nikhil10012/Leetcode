@@ -1,0 +1,17 @@
+class Solution {
+    public int removeDuplicates(int[] intArray) {
+        if (intArray == null || intArray.length == 0) {
+            return 0;
+        }
+
+        int uniqueCount = 1;
+        for (int i = 1; i < intArray.length; i++) {
+            if (intArray[i] != intArray[uniqueCount - 1]) {
+                intArray[uniqueCount] = intArray[i];
+                uniqueCount++;
+            }
+        }
+
+        return uniqueCount;
+    }
+}
