@@ -1,0 +1,57 @@
+import java.util.*;
+
+public class D4_FindFirstandLastPositionofElementinSortedArray {
+    public static int[] searchRange(int[] nums, int target) {
+            int n= nums.length;
+             int[] posi = {-1,-1};
+            int s =0;
+            int e = n-1;
+            int mid = s +((e-s) / 2);
+            while(s <= e){
+                
+                if(nums[mid] == target){
+                    posi[0] = mid;
+                    e = mid-1;
+                }else if(nums[mid] > target){
+                    e = mid-1;
+                }
+                else{
+                    s = mid+1;
+                }
+                mid = s +((e-s) / 2);
+            }
+            s =0;
+            e = n-1;
+            while(s <= e){
+                mid = s +((e-s) / 2);
+                if(nums[mid] == target){
+                    posi[1] = mid;
+                    s = mid+1;
+                }
+                else if(nums[mid] > target){
+                    e = mid-1;
+                }
+                else{
+                    s = mid+1;
+                }
+            }
+            
+           return posi; 
+       }
+    
+   public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    System.out.println("enter size of array");
+    int n= sc.nextInt();
+    int[] arr = new int[n];
+    System.out.println("enter elements of array");
+    for(int i=0;i<n;i++){
+        arr[i] = sc.nextInt();
+    }
+    int target = sc.nextInt();
+    int[] res = searchRange(arr,target);
+    for(int i=0;i<res.length;i++){
+        System.out.print(res[i]+" ");
+    }
+}
+}
