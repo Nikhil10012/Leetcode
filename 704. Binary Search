@@ -1,0 +1,37 @@
+import java.util.*;
+
+public class D4_Binarysearch {
+        public static int search(int[] nums, int target) {
+            int l= nums.length;
+            int start =0;
+            int end = l-1;
+            int mid = start +((end-start) / 2);
+            while(start <= end){
+                
+                if(nums[mid]==target){
+                    return mid;
+                } 
+                if(nums[mid] < target){
+                    start = mid+1;
+                }
+                else{
+                    end = mid-1;
+                }
+                mid = start +((end-start) / 2);
+            }
+            return -1;
+        }
+    public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    System.out.println("enter size of array");
+    int n= sc.nextInt();
+    int[] arr = new int[n];
+    System.out.println("enter elements of array");
+    for(int i=0;i<n;i++){
+        arr[i] = sc.nextInt();
+    }
+    int target = sc.nextInt();
+    int res = search(arr,target);
+        System.out.print(res);
+}
+}
