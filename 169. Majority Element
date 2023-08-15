@@ -1,0 +1,21 @@
+class Solution {
+    public int majorityElement(int[] intArray) {
+        int candidate = intArray[0];
+        int count = 1;
+
+        for (int i = 1; i < intArray.length; i++) {
+            if (intArray[i] == candidate) {
+                count++;
+            } else {
+                count--;
+                if (count == 0) {
+                    candidate = intArray[i];
+                    count = 1;
+                }
+            }
+        }
+
+        return candidate;
+    }
+}
+
