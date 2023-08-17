@@ -1,0 +1,25 @@
+public class LastWordLength {
+    public static void main(String[] args) {
+        String input = "Hello World Example";
+        int length = getLastWordLength(input);
+        System.out.println("Length of the last word: " + length);
+    }
+
+    public static int getLastWordLength(String str) {
+        int length = 0;
+        int i = str.length() - 1;
+
+        // Skip trailing spaces
+        while (i >= 0 && str.charAt(i) == ' ') {
+            i--;
+        }
+
+        // Count characters in the last word
+        while (i >= 0 && str.charAt(i) != ' ') {
+            length++;
+            i--;
+        }
+
+        return length;
+    }
+}
