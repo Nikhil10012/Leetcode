@@ -1,0 +1,31 @@
+class Solution {
+    public int[] intersection(int[] array1, int[] array2) {
+        Arrays.sort(array1);
+        Arrays.sort(array2);
+
+        List<Integer> commonElements = new ArrayList<>();
+        
+        int pointer1 = 0;
+        int pointer2 = 0;
+
+        while (pointer1 < array1.length && pointer2 < array2.length) {
+            if (array1[pointer1] == array2[pointer2]) {
+                if (commonElements.isEmpty() || array1[pointer1] != commonElements.get(commonElements.size() - 1)) {
+                    commonElements.add(array1[pointer1]);
+                }
+                pointer1++;
+                pointer2++;
+            } else if (array1[pointer1] < array2[pointer2]) {
+                pointer1++;
+            } else {
+                pointer2++;
+            }
+        }
+
+        int[] commonElementsArray = new int[commonElements.size()];
+        for (int i = 0; i < commonElements.size(); i++) {
+            commonElementsArray[i] = commonElements.get(i);
+        }
+        return commonElementsArray;
+    }
+}
