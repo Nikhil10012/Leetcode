@@ -1,0 +1,22 @@
+public class Main {
+    public static void main(String[] args) {
+        int input = 701;
+
+        String result = convertToString(input);
+        System.out.println("Number: " + input + " | Converted String: " + result);
+    }
+
+    public static String convertToString(int num) {
+        int base = 26;
+        StringBuilder sb = new StringBuilder();
+
+        while (num > 0) {
+            int remainder = (num - 1) % base; // Convert back to 0-based index
+            char c = (char) ('A' + remainder);
+            sb.insert(0, c); // Insert at the beginning to maintain correct order
+            num = (num - 1) / base;
+        }
+
+        return sb.toString();
+    }
+}
