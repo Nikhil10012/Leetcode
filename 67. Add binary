@@ -1,0 +1,30 @@
+public class BinarySum {
+    public static void main(String[] args) {
+        String binary1 = "1010";  // First binary number
+        String binary2 = "1101";  // Second binary number
+
+        String sum = binaryAddition(binary1, binary2);
+        System.out.println("Sum: " + sum);
+    }
+
+    public static String binaryAddition(String a, String b) {
+        int maxLength = Math.max(a.length(), b.length());
+        int carry = 0;
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < maxLength; i++) {
+            int digitA = i < a.length() ? a.charAt(a.length() - 1 - i) - '0' : 0;
+            int digitB = i < b.length() ? b.charAt(b.length() - 1 - i) - '0' : 0;
+
+            int sum = digitA + digitB + carry;
+            result.insert(0, sum % 2);
+            carry = sum / 2;
+        }
+
+        if (carry > 0) {
+            result.insert(0, carry);
+        }
+
+        return result.toString();
+    }
+}
