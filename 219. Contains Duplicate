@@ -1,0 +1,25 @@
+class Solution {
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+        int n = nums.length;
+        // Create a set to store elements within a sliding window of size k
+        Set<Integer> numSet = new HashSet<>();
+        
+        for (int i = 0; i < n; i++) {
+            // If the current element is already in the set, we found a duplicate
+            if (numSet.contains(nums[i])) {
+                return true;
+            }
+            
+            // Add the current element to the set
+            numSet.add(nums[i]);
+            
+            // If the set size exceeds k, remove the element at the beginning of the window
+            if (numSet.size() > k) {
+                numSet.remove(nums[i - k]);
+            }
+        }
+        
+        // No duplicates found within the allowed distance k
+        return false;
+    }
+}
