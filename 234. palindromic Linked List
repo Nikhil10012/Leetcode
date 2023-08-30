@@ -1,0 +1,39 @@
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        if (head == null || head.next == null) {
+            return true;
+        }
+
+        ListNode slow = head;
+        ListNode fast = head;
+
+        // Find the middle of the linked list using slow and fast pointers
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        // Reverse the second half of the linked list in-place
+        ListNode prev = null;
+        ListNode current = slow;
+        while (current != null) {
+            ListNode nextTemp = current.next;
+            current.next = prev;
+            prev = current;
+            current = nextTemp;
+        }
+
+        // Compare the reversed second half with the first half
+        ListNode left = head;
+        ListNode right = prev;
+        while (right != null) {
+            if (left.val != right.val) {
+                return false;
+            }
+            left = left.next;
+            right = right.next;
+        }
+
+        return true;
+    }
+}
