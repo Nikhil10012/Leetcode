@@ -1,0 +1,13 @@
+class Solution {
+    public int[] countBits(int n) {
+        int[] conB = new int[n + 1];
+        
+        for (int i = 1; i <= n; i++) {
+            // The number of set bits for i is the same as the number of set bits for i / 2
+            // plus the least significant bit (i & 1).
+            conB[i] = conB[i >> 1] + (i & 1);
+        }
+        
+        return conB;
+    }
+}
