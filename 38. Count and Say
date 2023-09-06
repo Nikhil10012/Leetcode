@@ -1,0 +1,43 @@
+class Solution {
+    public String countAndSay(int n) {
+        if (n <= 0) {
+            return "";
+        }
+        
+        String result = "1"; // Start with the first term
+        
+        for (int i = 1; i < n; i++) {
+            result = generateNextTerm(result);
+        }
+        
+        return result;
+    }
+    
+    private String generateNextTerm(String currentTerm) {
+        int len = currentTerm.length();
+        char[] nextTermChars = new char[2 * len]; // The next term won't be longer than twice the current term
+        
+        int idx = 0;
+        int count = 1;
+        char currentChar = currentTerm.charAt(0);
+        
+        for (int j = 1; j < len; j++) {
+            if (currentTerm.charAt(j) == currentChar) {
+                count++;
+            } else {
+                // Append the count and currentChar to the nextTermChars array
+                nextTermChars[idx++] = (char) (count + '0');
+                nextTermChars[idx++] = currentChar;
+                
+                currentChar = currentTerm.charAt(j);
+                count = 1;
+            }
+        }
+        
+        // Append the count and currentChar for the last group
+        nextTermChars[idx++] = (char) (count + '0');
+        nextTermChars[idx++] = currentChar;
+        
+        return new String(nextTermChars, 0, idx);
+    }
+}
