@@ -1,0 +1,46 @@
+Intuition
+The intuition behind this code is to generate Pascal's Triangle row by row. For each row, we iterate through the values and calculate the binomial coefficient using the formula (\binom{n}{r} = \frac{n!}{r! \cdot (n-r)!}).
+
+Approach
+Initialize an empty list <triangle> which will store the rows of Pascal's Triangle.
+
+If <numRows> is less than or equal to 0, return an empty list.
+
+Iterate from 0 to <numRows - 1>. For each iteration <i>, do the following:
+
+a. Initialize an empty list <row> which will represent the current row.
+
+b. Initialize a variable <num> with the value 1. This variable will hold the current binomial coefficient.
+
+c. Iterate from 0 to <i>. For each iteration <j>, do the following:
+
+Add <num> to the <row>.
+Update <num> using the formula: (\frac{{(i - j) \cdot \text{num}}}{{j + 1}}).
+d. Add the <row> to the <triangle>.
+
+Return the <triangle> containing all the rows of Pascal's Triangle.
+
+Complexity
+Time complexity: (O(n^2)) where (n) is the number of rows to be generated. This is because we have nested loops, with the outer loop running (n) times and the inner loop running (i) times in the worst case.
+
+Space complexity: (O(n^2)) for storing the entire Pascal's Triangle. However, the code can be modified to have constant space complexity if we only want to print the rows without storing them.
+
+Code
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> triangle = new ArrayList<>();
+        if (numRows <= 0) return triangle;
+        
+        for (int i = 0; i < numRows; i++) {
+            List<Integer> row = new ArrayList<>();
+            int num = 1;
+            for (int j = 0; j <= i; j++) {
+                row.add(num);
+                num = num * (i - j) / (j + 1);
+            }
+            triangle.add(row);
+        }
+        
+        return triangle;
+    }
+}
