@@ -1,7 +1,7 @@
-Intuition
+Intuition *
 The intuition behind this code is to generate Pascal's Triangle row by row. For each row, we iterate through the values and calculate the binomial coefficient using the formula (\binom{n}{r} = \frac{n!}{r! \cdot (n-r)!}).
 
-Approach
+Approach *
 Initialize an empty list <triangle> which will store the rows of Pascal's Triangle.
 
 If <numRows> is less than or equal to 0, return an empty list.
