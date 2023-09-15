@@ -1,0 +1,34 @@
+public class Main {
+    public static boolean isPerfectSquare(int num) {
+        if (num < 0)
+            return false;
+        if (num == 0 || num == 1)
+            return true;
+
+        long left = 1;
+        long right = num / 2;
+
+        while (left <= right) {
+            long mid = left + (right - left) / 2;
+            long square = mid * mid;
+
+            if (square == num)
+                return true;
+            else if (square < num)
+                left = mid + 1;
+            else
+                right = mid - 1;
+        }
+
+        return false;
+    }
+
+    public static void main(String[] args) {
+        int number = 195;
+        if (isPerfectSquare(number)) {
+            System.out.println(number + " is a perfect square.");
+        } else {
+            System.out.println(number + " is not a perfect square.");
+        }
+    }
+}
