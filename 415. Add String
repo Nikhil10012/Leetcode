@@ -1,0 +1,40 @@
+public class AddStrings {
+    public static String addStrings(String num1, String num2) {
+        int i = num1.length() - 1;
+        int j = num2.length() - 1;
+        int carry = 0;
+        int k = Math.max(i, j) + 1;
+        char[] result = new char[k + 1];
+
+        while (i >= 0 || j >= 0 || carry > 0) {
+            int x = i >= 0 ? num1.charAt(i) - '0' : 0;
+            int y = j >= 0 ? num2.charAt(j) - '0' : 0;
+
+            int total = x + y + carry;
+            carry = total / 10;
+            result[k--] = (char) ((total % 10) + '0');
+
+            i--;
+            j--;
+        }
+
+        return new String(result, k + 1, result.length - k - 1);
+    }
+
+    public static void main(String[] args) {
+        String num1_1 = "11";
+        String num2_1 = "123";
+        String num1_2 = "456";
+        String num2_2 = "77";
+        String num1_3 = "0";
+        String num2_3 = "0";
+
+        String output_1 = addStrings(num1_1, num2_1);
+        String output_2 = addStrings(num1_2, num2_2);
+        String output_3 = addStrings(num1_3, num2_3);
+
+        System.out.println(output_1); // Output: "134"
+        System.out.println(output_2); // Output: "533"
+        System.out.println(output_3); // Output: "0"
+    }
+}
