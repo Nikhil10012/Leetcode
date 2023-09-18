@@ -1,0 +1,32 @@
+public class PerfectNumberChecker {
+    public boolean checkPerfectNumber(int num) {
+        if (num <= 1) return false;
+        
+        int sum = 1; // Start with 1 since all numbers are divisible by 1
+        int sqrt = (int) Math.sqrt(num); // Calculate square root
+        
+        for (int i = 2; i <= sqrt; i++) {
+            if (num % i == 0) {
+                sum += i;
+                if (i != num / i) {
+                    sum += num / i;
+                }
+            }
+        }
+        
+        return sum == num;
+    }
+
+    public static void main(String[] args) {
+        PerfectNumberChecker checker = new PerfectNumberChecker();
+        
+        int num1 = 28;
+        int num2 = 12;
+        
+        boolean result1 = checker.checkPerfectNumber(num1);
+        boolean result2 = checker.checkPerfectNumber(num2);
+        
+        System.out.println(result1); // Output: true
+        System.out.println(result2); // Output: false
+    }
+}
