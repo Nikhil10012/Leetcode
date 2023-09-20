@@ -1,0 +1,31 @@
+public class FindDuplicate {
+    public static int findDuplicate(int[] nums) {
+        int tortoise = nums[0];
+        int hare = nums[0];
+        
+        // Phase 1: Detect if there's a cycle in the linked list
+        do {
+            tortoise = nums[tortoise];
+            hare = nums[nums[hare]];
+        } while (tortoise != hare);
+        
+        // Phase 2: Find the start of the cycle (the duplicate element)
+        tortoise = nums[0];
+        while (tortoise != hare) {
+            tortoise = nums[tortoise];
+            hare = nums[hare];
+        }
+        
+        return tortoise;
+    }
+
+    public static void main(String[] args) {
+        int[] nums1 = {1, 3, 4, 2, 2};
+        int result1 = findDuplicate(nums1);
+        System.out.println(result1); // Output: 2
+
+        int[] nums2 = {3, 1, 3, 4, 2};
+        int result2 = findDuplicate(nums2);
+        System.out.println(result2); // Output: 3
+    }
+}
