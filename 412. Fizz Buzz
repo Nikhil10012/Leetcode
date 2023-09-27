@@ -1,0 +1,22 @@
+class Solution {
+    public List<String> fizzBuzz(int n) {
+        List<String> result = new ArrayList<>();
+        
+        for (int i = 1; i <= n; i++) {
+            boolean diBy3 = (i % 3 == 0);
+            boolean diBy5 = (i % 5 == 0);
+
+            if (diBy3 && diBy5) {
+                result.add("FizzBuzz");
+            } else if (diBy3) {
+                result.add("Fizz");
+            } else if (diBy5) {
+                result.add("Buzz");
+            } else {
+                result.add(String.valueOf(i));
+            }
+        }
+        
+        return result;
+    }
+}
