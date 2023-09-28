@@ -1,0 +1,30 @@
+class Solution {
+    public int[] sortArrayByParity(int[] nums) {
+        int n = nums.length;
+        int[] na = new int[n];
+        int i = 0;
+        int j = 0;
+        while(i<n){
+            if(nums[i]%2==0){
+                na[j] = nums[i];
+                j++;
+            }
+            i++;
+        }
+        i = 0;
+        while(i<n){
+            if(nums[i]%2!=0){
+                na[j] = nums[i];
+                j++;
+            }
+            i++;
+        }
+        i=0;
+        while(i<n){
+            nums[i] = na[i];
+            i++;
+        }
+    
+    return nums;
+    }
+}
