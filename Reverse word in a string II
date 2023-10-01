@@ -1,0 +1,38 @@
+public class ReverseWords {
+
+    public String reverseWords(String s) {
+        char[] chars = s.toCharArray();
+        int start = 0;
+
+        for (int end = 0; end < chars.length; end++) {
+            if (chars[end] == ' ' || end == chars.length - 1) {
+                int left = start;
+                int right = end == chars.length - 1 ? end : end - 1;
+
+                while (left < right) {
+                    char temp = chars[left];
+                    chars[left] = chars[right];
+                    chars[right] = temp;
+                    left++;
+                    right--;
+                }
+
+                start = end + 1;
+            }
+        }
+
+        return new String(chars);
+    }
+
+    public static void main(String[] args) {
+        ReverseWords rw = new ReverseWords();
+
+        String input1 = "Let's take LeetCode contest";
+        String output1 = rw.reverseWords(input1);
+        System.out.println(output1);
+
+        String input2 = "God Ding";
+        String output2 = rw.reverseWords(input2);
+        System.out.println(output2);
+    }
+}
