@@ -1,0 +1,35 @@
+public class Solution {
+    public String[] findWords(String[] words) {
+        List<String> result = new ArrayList<>();
+        
+        for (String word : words) {
+            if (canBeTypedInOneRow(word.toLowerCase())) {
+                result.add(word);
+            }
+        }
+        
+        return result.toArray(new String[0]);
+    }
+    
+    private boolean canBeTypedInOneRow(String word) {
+        String[] rows = {"qwertyuiop", "asdfghjkl", "zxcvbnm"};
+        
+        for (String row : rows) {
+            if (containsAllChars(word, row)) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    private boolean containsAllChars(String word, String row) {
+        for (char c : word.toCharArray()) {
+            if (row.indexOf(c) == -1) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+}
