@@ -1,0 +1,27 @@
+public class Main {
+    public static int kthGrammar(int n, int k) {
+        if (n == 1) {
+            return 0;
+        }
+        
+        if (k % 2 == 0) {
+            return kthGrammar(n - 1, k / 2) == 0 ? 1 : 0;
+        } else {
+            return kthGrammar(n - 1, (k + 1) / 2);
+        }
+    }
+
+    public static void main(String[] args) {
+        int n1 = 1, k1 = 1;
+        int result1 = kthGrammar(n1, k1);
+        System.out.println(result1);  // Output: 0
+
+        int n2 = 2, k2 = 1;
+        int result2 = kthGrammar(n2, k2);
+        System.out.println(result2);  // Output: 0
+
+        int n3 = 2, k3 = 2;
+        int result3 = kthGrammar(n3, k3);
+        System.out.println(result3);  // Output: 1
+    }
+}
