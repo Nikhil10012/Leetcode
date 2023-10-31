@@ -1,0 +1,27 @@
+class Solution {
+    public int[] findOriginalArray(int[] pref) {
+        int n = pref.length;
+        int[] arr = new int[n];
+
+        if (n == 0 || pref[0] == 0) {
+            return arr;
+        }
+
+        arr[0] = pref[0];
+
+        for (int i = 1; i < n; i++) {
+            arr[i] = pref[i] ^ pref[i - 1];
+        }
+
+        return arr;
+    }
+     public static void main(String[] args) {
+        int[] nums = {5, 2, 0, 3, 1};
+        int[] pref = calculatePref(nums);
+
+        // Print the result
+        for (int num : pref) {
+            System.out.print(num + " ");
+        }
+    }
+}
