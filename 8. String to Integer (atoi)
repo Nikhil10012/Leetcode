@@ -1,0 +1,35 @@
+int i = 0;
+        int n = s.length();
+        
+        // Step 1: Read in and ignore any leading whitespace.
+        while (i < n && s.charAt(i) == ' ') {
+            i++;
+        }
+        
+        // Step 2: Check if the next character is '-' or '+'
+        int sign = 1;
+        if (i < n && (s.charAt(i) == '-' || s.charAt(i) == '+')) {
+            if (s.charAt(i) == '-') {
+                sign = -1;
+            }
+            i++;
+        }
+        
+        // Step 3: Read in next characters until the next non-digit character or the end of input is reached.
+        int num = 0;
+        while (i < n && Character.isDigit(s.charAt(i))) {
+            int digit = Character.getNumericValue(s.charAt(i));
+            
+            // Check for overflow
+            if (num > Integer.MAX_VALUE / 10 || (num == Integer.MAX_VALUE / 10 && digit > 7)) {
+                return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+            }
+            
+            num = num * 10 + digit;
+            i++;
+        }
+        
+        // Step 4: Change sign if necessary
+        num *= sign;
+        
+        return num;
